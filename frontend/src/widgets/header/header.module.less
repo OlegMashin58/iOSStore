@@ -1,0 +1,32 @@
+.headerContainer {
+  padding: 16px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: #f8f6f4;
+  z-index: 1;
+
+  & .nameContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+
+    & .name {
+      color: #000;
+    }
+
+    & .description {
+      color: #a7a7ab;
+    }
+  }
+
+  & .menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+}

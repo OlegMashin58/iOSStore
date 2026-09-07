@@ -1,0 +1,63 @@
+.catalogCard {
+  width: 230px;
+  border-radius: 16px;
+  padding: 15px 50px 15px 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  background: #fff;
+
+  border: 1px solid #eae7e4;
+  transition: 0.2s ease;
+
+  &:hover,
+  :focus {
+    box-shadow: 0 4px 15px rgba(168, 187, 207, 0.3);
+  }
+
+  & .textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .selectedIcon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+
+  .logoIcon {
+    width: 70px;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+
+  .checkbox {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .checkmark {
+    color: #00aaff;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.selected {
+  background: #f8f0ea;
+  border: 1.5px solid #c09273;
+  box-shadow: 0 6px 20px rgba(192, 146, 115, 0.1);
+}

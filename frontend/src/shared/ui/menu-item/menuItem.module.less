@@ -1,0 +1,36 @@
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 16px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    font-weight 0.2s ease;
+}
+
+.menuItemIcon {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.menuItemActive {
+  background-color: #c09273;
+  border-radius: 22px;
+  font-weight: 600 !important;
+  padding: 15px;
+
+  .menuItemText {
+    // color: #3a2517 !important;
+    color: #fff;
+  }
+}
+
+.menuItemInactive {
+  font-weight: 400 !important;
+}

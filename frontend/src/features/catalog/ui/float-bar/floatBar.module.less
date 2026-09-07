@@ -1,0 +1,58 @@
+.floatBar {
+  position: fixed;
+  max-width: 960px;
+  width: 100%;
+  bottom: 2%;
+  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  z-index: 2;
+  border: 1px solid #eae7e4;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & .leftContainer {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-right: 10px;
+
+    flex: 1;
+
+    min-width: 0;
+
+    .chipContainer {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      max-width: 520px;
+
+      :global(.rc-overflow) {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.more {
+  width: 20px;
+  overflow: visible;
+}
+
+.dropdownContent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: #c09273;
+  padding: 15px;
+  border-radius: 8px;
+  max-height: 250px;
+  overflow-y: scroll;
+}

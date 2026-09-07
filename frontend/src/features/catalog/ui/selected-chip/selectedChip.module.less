@@ -1,0 +1,39 @@
+.selectedChip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  padding: 8px;
+  width: fit-content;
+  background-color: #f8f0ea;
+  background: #f8f0ea;
+  border: 1px solid #eae7e4;
+  box-shadow: 0 6px 20px rgba(92, 61, 40, 0.1);
+  box-sizing: border-box;
+
+  width: fit-content;
+  flex-shrink: 0;
+  white-space: nowrap;
+
+  & .contentContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 8px;
+
+    & .appLogo {
+      border-radius: 8px;
+      width: 24px;
+    }
+  }
+
+  & .clearIcon {
+    cursor: pointer;
+
+    &:hover {
+      path {
+        opacity: 0.6;
+      }
+    }
+  }
+}

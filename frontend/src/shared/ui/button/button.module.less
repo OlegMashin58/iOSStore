@@ -1,0 +1,36 @@
+.button {
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #e6e6e6;
+  width: fit-content;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & .icon {
+    width: 20px;
+    margin-left: 10px;
+  }
+
+  &.primary {
+    background: #c09273;
+
+    .text {
+      color: #ffffff;
+    }
+
+    &:hover {
+      background: #a97858;
+    }
+  }
+
+  &.white {
+    background: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    .text {
+      color: #151515;
+    }
+  }
+}

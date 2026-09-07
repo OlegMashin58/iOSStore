@@ -1,0 +1,61 @@
+.contactBannerContainer {
+  display: flex;
+  background-color: #f7f7f7;
+  border-radius: 20px;
+  padding: 32px;
+  gap: 64px;
+  width: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  border: 1px solid #e6e6e6;
+
+  background:
+    radial-gradient(
+      650px 420px at 82% 45%,
+      rgba(226, 164, 126, 0.28) 0%,
+      rgba(226, 164, 126, 0.12) 38%,
+      transparent 50%
+    ),
+    radial-gradient(
+      700px 260px at 55% 100%,
+      rgba(235, 192, 161, 0.7) 0%,
+      rgba(248, 225, 209, 0.3) 45%,
+      transparent 100%
+    ),
+    radial-gradient(
+      900px 100px at 72% 0%,
+      rgba(248, 225, 209, 0.16) 0%,
+      rgba(248, 225, 209, 0.06) 45%,
+      transparent 100%
+    ),
+    linear-gradient(180deg, #f8f6f4 0%, #fffaf7 42%, #fcf6f1 78%, #f8f6f4 100%);
+
+  & .rightContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & .phonesContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  & .leftContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-self: center;
+
+    & .textContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    & .socialButtonsContainer {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}

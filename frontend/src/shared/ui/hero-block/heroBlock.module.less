@@ -1,0 +1,59 @@
+.heroBlockContainer {
+  // background-color: #f7f7f7;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      650px 420px at 82% 45%,
+      rgba(226, 164, 126, 0.28) 0%,
+      rgba(226, 164, 126, 0.12) 38%,
+      transparent 72%
+    ),
+    radial-gradient(
+      700px 260px at 55% 100%,
+      rgba(248, 225, 209, 0.7) 0%,
+      rgba(248, 225, 209, 0.3) 45%,
+      transparent 100%
+    ),
+    radial-gradient(
+      900px 100px at 72% 0%,
+      rgba(248, 225, 209, 0.16) 0%,
+      rgba(248, 225, 209, 0.06) 45%,
+      transparent 100%
+    ),
+    linear-gradient(180deg, #f8f6f4 0%, #fffaf7 42%, #fcf6f1 78%, #f8f6f4 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    right: -180px;
+    top: -260px;
+
+    border-radius: 50%;
+
+    background: rgba(242, 205, 184, 0.32);
+
+    filter: blur(20px);
+
+    pointer-events: none;
+  }
+
+  & .textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-self: center;
+  }
+
+  & .heroBlockImage {
+    width: 400px;
+    user-select: none;
+  }
+}
