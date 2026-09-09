@@ -1,6 +1,6 @@
 import { Form, Input, type FormInstance } from 'antd'
-import type { IRegisterFormValues } from '../model/types'
 import { Button } from '@shared/ui'
+import type { IRegisterFormValues } from '@features/auth/types/auth.types'
 
 interface IRegisterForm {
   form: FormInstance<IRegisterFormValues>
@@ -33,15 +33,15 @@ export const RegisterForm = ({ form, onFinish }: IRegisterForm) => {
         </Form.Item>
 
         <Form.Item
-          name="phone"
-          label="Телефон"
+          name="email"
+          label="Почта"
           rules={[{ required: true, message: 'Введите номер телефона' }]}
         >
-          <Input placeholder="Телефон" autoComplete="off" />
+          <Input placeholder="Почта" autoComplete="off" />
         </Form.Item>
 
         <Form.Item
-          name="Пароль"
+          name="password"
           label="Пароль"
           rules={[{ required: true, message: 'Введите Пароль' }]}
         >
@@ -59,7 +59,7 @@ export const RegisterForm = ({ form, onFinish }: IRegisterForm) => {
 
       <Button
         title={'Зарегестрироваться'}
-        onClick={() => {}}
+        onClick={() => onFinish}
         variant="primary"
       />
     </Form>

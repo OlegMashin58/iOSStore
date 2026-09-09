@@ -1,5 +1,6 @@
+import type { ILoginFormValues } from '@features/auth/types/auth.types'
+import { Button } from '@shared/ui'
 import { Form, Input, type FormInstance } from 'antd'
-import type { ILoginFormValues } from '../types/types'
 
 interface ILoginFormProps {
   form: FormInstance<ILoginFormValues>
@@ -15,20 +16,22 @@ export const LoginForm = ({ form, onFinish }: ILoginFormProps) => {
       onFinish={onFinish}
     >
       <Form.Item
-        name="phone"
-        label="Телефон"
+        name="email"
+        label="Почта"
         rules={[{ required: true, message: 'Введите номер телефона' }]}
       >
-        <Input placeholder="Телефон" autoComplete="off" />
+        <Input placeholder="Почта" autoComplete="off" />
       </Form.Item>
 
       <Form.Item
-        name="Пароль"
+        name="password"
         label="Пароль"
         rules={[{ required: true, message: 'Введите пароль' }]}
       >
         <Input placeholder="Пароль" autoComplete="off" />
       </Form.Item>
+
+      <Button variant="primary" onClick={() => onFinish} title="Войти"></Button>
     </Form>
   )
 }
