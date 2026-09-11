@@ -2,14 +2,22 @@ import {
   Body,
   Controller,
   Delete,
+  FileTypeValidator,
   Get,
+  MaxFileSizeValidator,
   Param,
+  ParseFilePipe,
   Post,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { memoryStorage } from 'multer';
 
 import { AppsService } from './apps.service.js';
 import { CreateAppDto } from './dto/create-app.dto.js';
+
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
 import { AdminGuard } from '../auth/guards/admin.guard.js';
 
@@ -24,8 +32,28 @@ export class AppsController {
 
   @Post()
   @UseGuards(JwtAuthGuard, AdminGuard)
-  async create(@Body() dto: CreateAppDto) {
-    return this.appsService.create(dto);
+  @UseInterceptors(
+    FileInterceptor('icon', {
+      storage: memoryStorage(),
+    }),
+  )
+  async create(
+    @Body() dto: CreateAppDto,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          new MaxFileSizeValidator({
+            maxSize: 2 * 1024 * 1024,
+          }),
+          new FileTypeValidator({
+            fileType: /^image\/(jpeg|png|webp)$/,
+          }),
+        ],
+      }),
+    )
+    icon: Express.Multer.File,
+  ) {
+    return this.appsService.create(dto, icon);
   }
 
   @Delete(':id')

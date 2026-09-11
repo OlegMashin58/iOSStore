@@ -1,3 +1,5 @@
+import { PlusIcon } from '@assets/icons'
+import { APP_CATEGORIES } from '@features/apps/consts/apps.consts'
 import type { ICreateApp } from '@features/apps/types/apps.types'
 import { Button } from '@shared/ui'
 import { Form, Input, Select, Upload, type FormInstance } from 'antd'
@@ -8,29 +10,6 @@ interface ICreateAppFormProps {
 }
 
 export const CreateAppForm = ({ form, onFinish }: ICreateAppFormProps) => {
-  const categoryOptions = [
-    {
-      value: 'social',
-      label: 'Социальные сети',
-    },
-    {
-      value: 'finances',
-      label: 'Финансы',
-    },
-    {
-      value: 'purchases',
-      label: 'Покупки',
-    },
-    {
-      value: 'media',
-      label: 'Фото и видео',
-    },
-    {
-      value: 'utilities',
-      label: 'Утилиты',
-    },
-  ]
-
   return (
     <Form
       form={form}
@@ -44,8 +23,10 @@ export const CreateAppForm = ({ form, onFinish }: ICreateAppFormProps) => {
         valuePropName="fileList"
         getValueFromEvent={(event) => event.fileList}
       >
-        <Upload listType="picture-card" maxCount={1} beforeUpload={() => false}>
-          +
+        <Upload beforeUpload={() => false} maxCount={1} accept="svg">
+          <Button view="primary" icon={<PlusIcon />}>
+            Выбрать изображение
+          </Button>
         </Upload>
       </Form.Item>
 
@@ -62,7 +43,7 @@ export const CreateAppForm = ({ form, onFinish }: ICreateAppFormProps) => {
         label="Категория"
         rules={[{ required: true, message: 'Выбирите категорию' }]}
       >
-        <Select placeholder="Категория" options={categoryOptions} />
+        <Select placeholder="Категория" options={APP_CATEGORIES} />
       </Form.Item>
 
       <Form.Item

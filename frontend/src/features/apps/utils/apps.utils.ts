@@ -14,10 +14,19 @@ export const getAppFormData = (app: ICreateApp) => {
   const formData = new FormData()
 
   appendTextField(formData, 'name', app.name)
-  appendTextField(formData, 'description', app.description)
+  appendTextField(formData, 'category', app.category)
+  appendTextField(formData, 'price', app.price)
+
+  for (const [key, value] of formData.entries()) {
+    console.log(key, value)
+  }
 
   if (app.icon) {
-    formData.append('icon', app.icon)
+    const file = app.icon[0]?.originFileObj
+
+    if (file) {
+      formData.append('icon', file)
+    }
   }
 
   return formData

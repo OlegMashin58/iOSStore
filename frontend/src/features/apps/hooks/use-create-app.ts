@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createApp } from '../api'
+import { appsQueryKey } from '@entities/apps/api/apps.query'
 
 export const useCreateApp = () => {
   const queryClient = useQueryClient()
@@ -7,9 +8,9 @@ export const useCreateApp = () => {
   return useMutation({
     mutationFn: createApp,
 
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['apps'],
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: appsQueryKey,
       })
     },
   })
