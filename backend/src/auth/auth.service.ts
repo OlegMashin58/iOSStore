@@ -28,9 +28,18 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(dto.password, 12);
 
-    const user = await this.usersService.create(email, hashedPassword);
+    const user = await this.usersService.create(
+      email,
+      hashedPassword,
+      dto.name,
+    );
 
-    return this.createAuthResponse(user.id, user.email);
+    return this.createAuthResponse(
+      user.id,
+      user.email,
+      user.name,
+      user.isAdmin,
+    );
   }
 
   async login(dto: LoginDto) {
@@ -48,7 +57,12 @@ export class AuthService {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    return this.createAuthResponse(user.id, user.email);
+    return this.createAuthResponse(
+      user.id,
+      user.email,
+      user.name,
+      user.isAdmin,
+    );
   }
 
   async getMe(userId: string) {
@@ -61,14 +75,25 @@ export class AuthService {
     return {
       id: user.id,
       email: user.email,
+      name: user.name,
+      surname: user.surname,
+      phone: user.phone,
+      photo: user.photo,
+      isAdmin: user.isAdmin,
       createdAt: user.createdAt,
     };
   }
 
-  private async createAuthResponse(id: string, email: string) {
+  private async createAuthResponse(
+    id: string,
+    email: string,
+    name: string,
+    isAdmin: boolean,
+  ) {
     const payload = {
       sub: id,
       email,
+      isAdmin,
     };
 
     const accessToken = await this.jwtService.signAsync(payload);
@@ -78,6 +103,8 @@ export class AuthService {
       user: {
         id,
         email,
+        name,
+        isAdmin,
       },
     };
   }

@@ -1,36 +1,98 @@
 .button {
-  height: auto;
-  border-radius: 12px;
-  border: 1px solid #e6e6e6;
-  width: fit-content;
-  padding: 10px 16px;
-  display: flex;
+  height: 40px;
+  padding: 0 18px;
+
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  & .icon {
-    width: 20px;
-    margin-left: 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 500;
+
+  box-shadow: none;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+
+  &:not(:disabled):active {
+    transform: translateY(1px);
   }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(169, 120, 88, 0.18);
+  }
+
+  // Иконка внутри кнопки
+  :global(.anticon) {
+    font-size: 17px;
+  }
+
+  // =========================
+  // PRIMARY
+  // =========================
 
   &.primary {
-    background: #c09273;
+    color: #ffffff;
+    background: #a97858;
+    border-color: #a97858;
 
-    .text {
+    &:not(:disabled):hover {
       color: #ffffff;
+      background: #8f6247;
+      border-color: #8f6247;
     }
 
-    &:hover {
-      background: #a97858;
+    &:not(:disabled):active {
+      color: #ffffff;
+      background: #81583f;
+      border-color: #81583f;
+    }
+
+    &:disabled {
+      color: #ffffff;
+      background: #cdbbae;
+      border-color: #cdbbae;
+      cursor: not-allowed;
     }
   }
 
-  &.white {
-    background: #fff;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  // =========================
+  // WHITE
+  // =========================
 
-    .text {
-      color: #151515;
+  &.white {
+    color: #25211e;
+    background: #ffffff;
+    border-color: #e8e4df;
+
+    &:not(:disabled):hover {
+      color: #25211e;
+      background: #faf9f7;
+      border-color: #d8d2cc;
+      box-shadow: 0 3px 10px rgba(37, 33, 30, 0.06);
+    }
+
+    &:not(:disabled):active {
+      color: #25211e;
+      background: #f5f3f0;
+      border-color: #d8d2cc;
+      box-shadow: none;
+    }
+
+    &:disabled {
+      color: #b9b4ae;
+      background: #f5f4f2;
+      border-color: #e8e4df;
+      cursor: not-allowed;
     }
   }
 }

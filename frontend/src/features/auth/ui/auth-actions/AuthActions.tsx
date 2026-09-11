@@ -1,31 +1,23 @@
 import { useAuth } from '@app/providers'
 import { ProfileDropdown } from '../profile-dropdown/ProfileDropdown'
 import { Button } from '@shared/ui'
-import { useState } from 'react'
-import { AuthModal } from '@widgets/auth-modal/AuthModal'
 
-export const AuthActions = () => {
+interface IAuthActionsProps {
+  onClick: () => void
+}
+
+export const AuthActions = ({ onClick }: IAuthActionsProps) => {
   const { isAuth } = useAuth()
-
-  const [openAuthModal, setIsOpenAuthModal] = useState(false)
-
-  const handleOpenAuthModal = () => setIsOpenAuthModal(true)
-  const handleCancelAuthModal = () => setIsOpenAuthModal(false)
-  console.log('isAuth', isAuth)
 
   return (
     <>
       {isAuth ? (
         <ProfileDropdown />
       ) : (
-        <Button
-          title={'Войти/регистрация'}
-          variant="primary"
-          onClick={handleOpenAuthModal}
-        />
+        <Button view="primary" onClick={onClick}>
+          Войти/регистрация
+        </Button>
       )}
-
-      <AuthModal open={openAuthModal} onCancel={handleCancelAuthModal} />
     </>
   )
 }

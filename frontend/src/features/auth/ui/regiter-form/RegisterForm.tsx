@@ -57,11 +57,9 @@ export const RegisterForm = ({ form, onFinish }: IRegisterForm) => {
         </Form.Item>
       </div>
 
-      <Button
-        title={'Зарегестрироваться'}
-        onClick={() => onFinish}
-        variant="primary"
-      />
+      <Button htmlType="submit" view="primary">
+        Зарегестрироваться
+      </Button>
     </Form>
   )
 }

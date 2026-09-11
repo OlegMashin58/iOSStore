@@ -8,6 +8,7 @@ import { AuthController } from './auth.controller.js';
 import { AuthService } from './auth.service.js';
 import { JwtStrategy } from './strategies/jwt.strategy.js';
 import type { StringValue } from 'ms';
+import { AdminSeed } from '../seeds/admin.seed.js';
 
 @Module({
   imports: [
@@ -34,8 +35,8 @@ import type { StringValue } from 'ms';
 
   controllers: [AuthController],
 
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, AdminSeed],
 
-  exports: [AuthService],
+  exports: [AuthService, JwtModule, PassportModule],
 })
 export class AuthModule {}

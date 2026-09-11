@@ -6,6 +6,7 @@ interface IAuthContext {
   user: IUser | null
   isAuth: boolean
   isLoading: boolean
+  isAdmin: boolean
 }
 
 const AuthContext = createContext<IAuthContext | null>(null)
@@ -25,6 +26,7 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
         user,
         isAuth: Boolean(user),
         isLoading,
+        isAdmin: Boolean(user),
       }}
     >
       {children}

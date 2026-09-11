@@ -1,7 +1,6 @@
 import { CATALOG_APPS } from '@features/catalog/consts'
 import { CatalogCard } from '@features/catalog/ui/catalog-card/CatalogCard'
 import { FeatureBanner, HeroBlock } from '@shared/ui'
-import { Footer, Header } from '@widgets'
 
 import styles from './catalogPage.module.less'
 import { useMemo, useState } from 'react'
@@ -50,7 +49,7 @@ export const CatalogPage = () => {
 
     // 2. Открываем чат на Авито
     // ВАЖНО: itemId должен быть реальным ID объявления продавца
-    const avitoItemId = '123456789' // <-- ЗАМЕНИ НА РЕАЛЬНЫЙ ID
+
     const link = `https://www.avito.ru/profile/messenger/channel/u2i-cb_VlX7YqSfcCDJJAUmjlA`
     window.open(link, '_blank')
   }
@@ -82,7 +81,6 @@ export const CatalogPage = () => {
 
   return (
     <>
-      <Header />
       <HeroBlock
         title={TEXT_CONSTANTS.TITLE}
         description={TEXT_CONSTANTS.DESCRIPTION}
@@ -102,8 +100,6 @@ export const CatalogPage = () => {
         </div>
         <FeatureBanner />
       </div>
-
-      <Footer />
     </>
   )
 }

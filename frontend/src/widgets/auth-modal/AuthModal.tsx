@@ -58,6 +58,6 @@ export const AuthModal = ({ open, onCancel }: IAuthModalProps) => {
       destroyOnHidden={true}
       title={<Tabs items={items} />}
       footer={false}
-    ></Modal>
+    />
   )
 }

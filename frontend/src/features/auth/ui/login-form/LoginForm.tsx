@@ -31,7 +31,9 @@ export const LoginForm = ({ form, onFinish }: ILoginFormProps) => {
         <Input placeholder="Пароль" autoComplete="off" />
       </Form.Item>
 
-      <Button variant="primary" onClick={() => onFinish} title="Войти"></Button>
+      <Button view="primary" htmlType="submit">
+        Войти
+      </Button>
     </Form>
   )
 }
