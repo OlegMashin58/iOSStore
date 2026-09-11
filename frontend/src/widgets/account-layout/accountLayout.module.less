@@ -1,0 +1,39 @@
+.accountLayout {
+  padding: 50px;
+  display: flex;
+  gap: 30px;
+  height: 100vh;
+  background-color: #f8f7f5;
+
+  & .aside {
+    padding: 10px;
+    height: 100%;
+    border-radius: 16px;
+    box-shadow:
+      0 2px 4px rgba(37, 33, 30, 0.02),
+      0 8px 20px rgba(37, 33, 30, 0.04),
+      0 20px 40px rgba(37, 33, 30, 0.06);
+
+    & .menuRoot {
+      border: none;
+      background-color: #f8f7f5;
+
+      & .menuItem {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+  }
+
+  & .content {
+    width: 100%;
+    padding: 20px;
+    height: 100%;
+    border-radius: 16px;
+    box-shadow:
+      0 2px 4px rgba(37, 33, 30, 0.02),
+      0 8px 20px rgba(37, 33, 30, 0.04),
+      0 20px 40px rgba(37, 33, 30, 0.06);
+  }
+}

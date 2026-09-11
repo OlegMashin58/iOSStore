@@ -1,3 +1,5 @@
 export * from './main-page/MainPage'
 export * from './catalog-page/CatalogPage'
 export * from './guide-page/GuidePage'
+export * from './profile-page/ProfilePage'
+export * from './admin-apps-page/AdminAppsPage'

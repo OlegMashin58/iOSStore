@@ -1,4 +1,3 @@
-import { Footer, Header } from '@widgets/index'
 import { steps } from '@features/guide-page/consts'
 import { FeatureBanner, HeroBlock } from '@shared/ui'
 import { Accordion } from '@shared/ui/accordion/Accordion'
@@ -8,7 +7,6 @@ import styles from './guidePage.module.less'
 export const GuidePage = () => {
   return (
     <>
-      <Header />
       <HeroBlock
         title={
           <p>
@@ -23,8 +21,6 @@ export const GuidePage = () => {
         <Accordion steps={steps} />
         <FeatureBanner />
       </div>
-
-      <Footer />
     </>
   )
 }

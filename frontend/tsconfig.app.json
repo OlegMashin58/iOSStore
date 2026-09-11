@@ -29,7 +29,11 @@
       "@widgets/*": ["./src/widgets/*"],
       "@widgets": ["./src/widgets"],
       "@assets/*": ["./src/assets/*"],
-      "@assets": ["./src/assets"]
+      "@assets": ["./src/assets"],
+      "@entities/*": ["./src/entities/*"],
+      "@entities": ["./src/entities"],
+      "@app/*": ["./src/app/*"],
+      "@app": ["./src/app"]
     }
   },
   "include": ["src"]

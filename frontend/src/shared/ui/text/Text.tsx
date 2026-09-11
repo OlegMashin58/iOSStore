@@ -19,7 +19,7 @@ interface ITextProps {
 
 export const Text = ({ text, variant, className }: ITextProps) => {
   return (
-    <text
+    <span
       className={classNames(styles.text, className, {
         [styles.normal]: variant === 'normal',
         [styles.hero]: variant === 'hero',
@@ -32,6 +32,6 @@ export const Text = ({ text, variant, className }: ITextProps) => {
       })}
     >
       {text}
-    </text>
+    </span>
   )
 }

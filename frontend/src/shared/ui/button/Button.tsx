@@ -1,36 +1,23 @@
-import type { ReactNode } from 'react'
-import { Text } from '../text/Text'
+import { Button as AntButton } from 'antd'
+import type { ButtonProps } from 'antd/es/button/Button'
 
 import styles from './button.module.less'
 import classnames from 'classnames'
 
-interface IButtonProps {
+interface IButtonProps extends ButtonProps {
   title?: string
-  icon?: string
-  variant: 'primary' | 'white'
-  onClick: () => void
-  children?: ReactNode
+  view: 'primary' | 'white'
 }
 
-export const Button = ({
-  title,
-  icon,
-  variant,
-  onClick,
-  // children,
-}: IButtonProps) => {
+export const Button = ({ title, view, ...restProps }: IButtonProps) => {
   return (
-    <button
-      // title={title}
-      onClick={onClick}
+    <AntButton
+      title={title}
       className={classnames(styles.button, {
-        [styles.primary]: variant === 'primary',
-        [styles.white]: variant === 'white',
+        [styles.primary]: view === 'primary',
+        [styles.white]: view === 'white',
       })}
-    >
-      <Text variant="normal" text={title} className={styles.text} />
-      {icon && <img src={icon} className={styles.icon} />}
-      {/* {children} */}
-    </button>
+      {...restProps}
+    />
   )
 }

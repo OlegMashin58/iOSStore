@@ -1,0 +1,17 @@
+{
+  "name": "iosstore",
+  "private": true,
+  "scripts": {
+    "debug": "concurrently \"npm run docker:up\" \"npm run frontend\" \"npm run backend\"",
+    "frontend": "npm --prefix frontend run dev",
+    "backend": "npm --prefix backend run start:dev",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "npm --prefix frontend run build",
+    "build:backend": "npm --prefix backend run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.4"
+  }
+}

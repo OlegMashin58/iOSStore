@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom'
-import { Button, Text } from '@shared/ui'
+import { Text } from '@shared/ui'
 import { MenuItem } from '@shared/ui/menu-item/MenuItem'
 import { MENU_OPTIONS, TEXTS } from './config/consts'
+import { AuthActions } from '@features/auth/ui'
 import { useState } from 'react'
+import { AuthModal } from '@widgets/auth-modal/AuthModal'
 
 import styles from './header.module.less'
-import { AuthModal } from '@widgets/auth-modal/AuthModal'
 
 export const Header = () => {
   const [openAuthModal, setIsOpenAuthModal] = useState(false)
-
-  // const isAuth = true
 
   const handleOpenAuthModal = () => setIsOpenAuthModal(true)
   const handleCancelAuthModal = () => setIsOpenAuthModal(false)
@@ -34,13 +33,7 @@ export const Header = () => {
 
       <div className={styles.menu}>{getMenuItems()}</div>
 
-      <div className={styles.buttonsContainer}>
-        <Button
-          title={TEXTS.REGISTRATION}
-          variant="primary"
-          onClick={handleOpenAuthModal}
-        />
-      </div>
+      <AuthActions onClick={handleOpenAuthModal} />
 
       <AuthModal open={openAuthModal} onCancel={handleCancelAuthModal} />
     </header>

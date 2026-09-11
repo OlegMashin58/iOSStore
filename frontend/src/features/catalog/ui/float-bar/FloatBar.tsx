@@ -67,7 +67,7 @@ export const FloatBar = ({
 
       <Button
         onClick={onClick}
-        variant="primary"
+        view="primary"
         title={'Перейти к заказу'}
         icon={RightArrowIcon}
       />
