@@ -23,7 +23,7 @@ export const HeaderProfile = (user: IUser) => {
         </div>
       </div>
 
-      <Button view="primary" />
+      {/* <Button view="primary" /> */}
     </div>
   )
 }

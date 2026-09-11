@@ -1,4 +1,4 @@
-import { Button, Text } from '../../shared/ui'
+import { Text } from '../../shared/ui'
 
 import styles from './LinkPage.module.less'
 

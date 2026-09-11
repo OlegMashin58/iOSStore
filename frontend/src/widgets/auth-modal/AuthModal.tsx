@@ -17,9 +17,9 @@ export const AuthModal = ({ open, onCancel }: IAuthModalProps) => {
   const [loginForm] = useForm<ILoginFormValues>()
   const [registerForm] = useForm<IRegisterFormValues>()
 
-  const { mutate: login, isPending: isLoginPending } = useLogin()
+  const { mutate: login } = useLogin()
 
-  const { mutate: register, isPending: isRegisterPending } = useRegister()
+  const { mutate: register } = useRegister()
 
   const handleLogin = (values: ILoginFormValues) => {
     login(values, {
