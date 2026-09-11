@@ -5,6 +5,7 @@ import {
   GuidePage,
   ProfilePage,
   AdminAppsPage,
+  TestPage,
 } from '../pages'
 
 import './styles/reset.less'
@@ -22,6 +23,7 @@ export const App = () => {
         <Route path="/guide" element={<GuidePage />} />
 
         {/* <Route path="/profile" element={<AccountLayout />} /> */}
+        <Route path="/test-ipa" element={<TestPage />} />
 
         <Route element={<RequireAuth />}>
           <Route element={<AccountLayout />}>
