@@ -13,7 +13,15 @@ export const CreateAppModal = ({ open, onCancel }: ICreateAppModalProps) => {
   const [form] = useForm<ICreateApp>()
 
   const handleCreate = (values: ICreateApp) => {
-    createApp(values)
+    const normalized: ICreateApp = {
+      ...values,
+      s3Key: values.s3Key?.trim() ?? '',
+      bundleIdentifier: values.bundleIdentifier?.trim() ?? '',
+      bundleVersion: values.bundleVersion?.trim() ?? '',
+    }
+
+    console.log('normalized before send', normalized) // проверь, что тут нет null
+    createApp(normalized)
   }
 
   return (

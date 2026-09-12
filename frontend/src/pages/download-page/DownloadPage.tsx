@@ -44,12 +44,18 @@ export const DownloadPage = () => {
   return (
     <div className={styles.downloadPage}>
       <div className={styles.block}>
-        <Image src={data.app.icon} preview={false} width={96} height={96} />
+        <div className={styles.appInfo}>
+          <Image
+            src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${data.app.icon}`}
+            preview={false}
+            width={96}
+            height={96}
+          />
 
-        <Text variant="title" text={data.app.name} />
+          <Text variant="title" text={data.app.name} />
 
-        <Text variant="subtitle" text={data.app.category} />
-
+          <Text variant="subtitle" text={data.app.category} />
+        </div>
         <Button
           view="primary"
           onClick={handleInstall}

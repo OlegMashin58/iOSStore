@@ -35,9 +35,10 @@ export class App {
   category: AppCategory;
 
   @Column({
-    type: 'integer',
+    type: 'varchar',
+    nullable: true,
   })
-  price: number;
+  price: string | null;
 
   @CreateDateColumn()
   createdAt: Date;

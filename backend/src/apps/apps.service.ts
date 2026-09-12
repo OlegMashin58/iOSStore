@@ -31,6 +31,7 @@ export class AppsService {
 
     const app = this.appsRepository.create({
       ...dto,
+
       icon: iconPath,
     });
 
