@@ -25,6 +25,9 @@ export class App {
   @Column()
   icon: string;
 
+  @Column({ nullable: true })
+  s3Key: string | null;
+
   @Column({
     type: 'enum',
     enum: AppCategory,

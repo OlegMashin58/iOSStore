@@ -1,4 +1,5 @@
 import type { IApp } from '@entities/apps/types/apps.types'
+import { GenerateDownloadLinkButton } from '@features/apps/ui/generate-download-link-button/GenerateDowloadLinkButton'
 import { Image, type TableColumnsType } from 'antd'
 
 export const useColumns = () => {
@@ -34,6 +35,12 @@ export const useColumns = () => {
       dataIndex: '',
       key: 'x',
       render: () => <a>Delete</a>,
+    },
+    {
+      title: 'Ссылка',
+      dataIndex: '',
+      key: 'linkButton',
+      render: (_, app) => <GenerateDownloadLinkButton appId={app.id} />,
     },
   ]
 

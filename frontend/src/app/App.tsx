@@ -30,7 +30,7 @@ export const App = () => {
         </Route>
       </Route>
 
-      <Route path="/test-ipa" element={<DownloadPage />} />
+      <Route path="/download/:token" element={<DownloadPage />} />
     </Routes>
   )
 }

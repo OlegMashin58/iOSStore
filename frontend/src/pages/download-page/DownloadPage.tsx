@@ -1,23 +1,39 @@
-import { Button } from '@shared/ui'
+import { Button, Text } from '@shared/ui'
+import { DownloadIcon } from '@assets/icons'
+import { useParams } from 'react-router-dom'
+import { Image, Spin } from 'antd'
+import { useDownloadInfo } from '@entities/downloads/hooks/use-download-info'
 
 import styles from './downloaPage.module.less'
-import { DownloadIcon } from '@assets/icons'
 
-interface IDownloadPageProps {}
+export const DownloadPage = () => {
+  const { token = '' } = useParams()
 
-export const DownloadPage = ({}: IDownloadPageProps) => {
-  const manifestUrl = `${window.location.origin}/manifest.plist`
+  const { data, isLoading, isError } = useDownloadInfo(token)
 
-  const handleInstall = () => {
-    window.location.href = `itms-services://?action=download-manifest&url=${encodeURIComponent(manifestUrl)}`
+  if (isLoading) {
+    return <Spin />
+  }
+
+  if (isError || !data) {
+    return <Text variant="title" text="Ссылка недействительна или истекла" />
+  }
+
+  const handleDownload = () => {
+    window.location.href = `${import.meta.env.VITE_API_URL}/downloads/${token}/file`
   }
 
   return (
     <div className={styles.downloadPage}>
       <div className={styles.block}>
+        <Image src={data.app.icon} preview={false} />
+
+        <Text variant="title" text={data.app.name} />
+        <Text variant="subtitle" text={data.app.category} />
+
         <Button
           view="primary"
-          onClick={handleInstall}
+          onClick={handleDownload}
           icon={<DownloadIcon stroke="#fff" />}
         >
           Скачать
