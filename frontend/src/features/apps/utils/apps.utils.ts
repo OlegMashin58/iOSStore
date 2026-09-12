@@ -17,6 +17,10 @@ export const getAppFormData = (app: ICreateApp) => {
   appendTextField(formData, 'category', app.category)
   appendTextField(formData, 'price', app.price)
 
+  appendTextField(formData, 's3Key', app.s3Key)
+  appendTextField(formData, 'bundleIdentifier', app.bundleIdentifier)
+  appendTextField(formData, 'bundleVersion', app.bundleVersion)
+
   for (const [key, value] of formData.entries()) {
     console.log(key, value)
   }

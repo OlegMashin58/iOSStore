@@ -18,7 +18,7 @@ export class DownloadsService {
     private readonly storageService: StorageService,
   ) {}
 
-  async createLink(appId: number) {
+  async createLink(appId: string) {
     const app = await this.appRepository.findOne({
       where: { id: appId },
     });
@@ -38,6 +38,7 @@ export class DownloadsService {
     const downloadLink = this.downloadLinkRepository.create({
       token,
       appId: app.id,
+      s3Key: app.s3Key,
       expiresAt,
     });
 
@@ -80,6 +81,26 @@ export class DownloadsService {
   async getFileUrl(token: string) {
     const link = await this.downloadLinkRepository.findOne({
       where: { token },
+    });
+
+    if (!link) {
+      throw new NotFoundException('Ссылка не найдена');
+    }
+
+    if (link.expiresAt <= new Date()) {
+      throw new NotFoundException('Срок действия ссылки истёк');
+    }
+
+    if (!link.s3Key) {
+      throw new NotFoundException('Файл приложения не найден');
+    }
+
+    return this.storageService.getDownloadUrl(link.s3Key);
+  }
+
+  async getManifest(token: string) {
+    const link = await this.downloadLinkRepository.findOne({
+      where: { token },
       relations: {
         app: true,
       },
@@ -93,10 +114,60 @@ export class DownloadsService {
       throw new NotFoundException('Срок действия ссылки истёк');
     }
 
-    if (!link.app.s3Key) {
+    if (!link.s3Key) {
       throw new NotFoundException('Файл приложения не найден');
     }
 
-    return this.storageService.getDownloadUrl(link.app.s3Key);
+    const ipaUrl = await this.storageService.getDownloadUrl(
+      link.s3Key,
+      60 * 60,
+    );
+
+    const manifest = `<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+  <plist version="1.0">
+    <dict>
+      <key>items</key>
+      <array>
+        <dict>
+          <key>assets</key>
+          <array>
+            <dict>
+              <key>kind</key>
+              <string>software-package</string>
+              <key>url</key>
+              <string>${ipaUrl}</string>
+            </dict>
+          </array>
+  
+          <key>metadata</key>
+          <dict>
+            <key>bundle-identifier</key>
+            <string>${link.app.bundleIdentifier}</string>
+  
+            <key>bundle-version</key>
+            <string>${link.app.bundleVersion}</string>
+  
+            <key>kind</key>
+            <string>software</string>
+  
+            <key>title</key>
+            <string>${this.escapeXml(link.app.name)}</string>
+          </dict>
+        </dict>
+      </array>
+    </dict>
+  </plist>`;
+
+    return manifest;
+  }
+
+  private escapeXml(value: string) {
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&apos;');
   }
 }

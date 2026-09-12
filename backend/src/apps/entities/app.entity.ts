@@ -25,7 +25,7 @@ export class App {
   @Column()
   icon: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   s3Key: string | null;
 
   @Column({
@@ -44,4 +44,10 @@ export class App {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @Column({ type: 'varchar', nullable: true })
+  bundleIdentifier: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  bundleVersion: string | null;
 }

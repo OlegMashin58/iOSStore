@@ -20,7 +20,13 @@ export const DownloadPage = () => {
   }
 
   const handleDownload = () => {
-    window.location.href = `${import.meta.env.VITE_API_URL}/downloads/${token}/file`
+    const manifestUrl = `${window.location.origin}${import.meta.env.VITE_API_URL}/downloads/${token}/manifest.plist`
+
+    const installUrl = `itms-services://?action=download-manifest&url=${encodeURIComponent(
+      manifestUrl,
+    )}`
+
+    window.location.href = installUrl
   }
 
   return (

@@ -54,6 +54,30 @@ export const CreateAppForm = ({ form, onFinish }: ICreateAppFormProps) => {
         <Input placeholder="Цена" autoComplete="off" />
       </Form.Item>
 
+      <Form.Item
+        name="s3Key"
+        label="s3Key"
+        rules={[{ required: true, message: 'Укажите цену' }]}
+      >
+        <Input placeholder="s3Key" autoComplete="off" />
+      </Form.Item>
+
+      <Form.Item
+        name="bundleIdentifier"
+        label="bundleIdentifier"
+        rules={[{ required: true, message: 'Укажите цену' }]}
+      >
+        <Input placeholder="bundleIdentifier" autoComplete="off" />
+      </Form.Item>
+
+      <Form.Item
+        name="bundleVersion"
+        label="bundleVersion"
+        rules={[{ required: true, message: 'Укажите цену' }]}
+      >
+        <Input placeholder="bundleVersion" autoComplete="off" />
+      </Form.Item>
+
       <Button view="primary" htmlType="submit">
         Создать
       </Button>

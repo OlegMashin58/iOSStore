@@ -22,7 +22,10 @@ export class DownloadLink {
   app: App;
 
   @Column({ name: 'app_id' })
-  appId: number;
+  appId: string;
+
+  @Column()
+  s3Key: string;
 
   @Column()
   expiresAt: Date;

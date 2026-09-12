@@ -6,4 +6,7 @@ export interface ICreateApp {
   category?: AppCategory
   price?: number
   icon?: UploadFile[]
+  s3Key: string
+  bundleIdentifier: string
+  bundleVersion: string
 }
