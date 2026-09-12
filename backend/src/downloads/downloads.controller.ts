@@ -1,14 +1,22 @@
-import { Controller, Get, Param, Post, Res, UseGuards } from '@nestjs/common';
-import type { Response } from 'express';
+import {
+  Controller,
+  Get,
+  Header,
+  Param,
+  Post,
+  Redirect,
+  UseGuards,
+} from '@nestjs/common';
 
 import { DownloadsService } from './downloads.service.js';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
 
 @Controller()
 export class DownloadsController {
   constructor(private readonly downloadsService: DownloadsService) {}
 
   @Post('apps/:id/download-link')
-  @UseGuards(/* твой JwtAuthGuard */)
+  @UseGuards(JwtAuthGuard)
   async createLink(@Param('id') id: string) {
     return this.downloadsService.createLink(id);
   }
@@ -18,23 +26,20 @@ export class DownloadsController {
     return this.downloadsService.getLink(token);
   }
 
-  @Get('downloads/:token/file')
-  async download(@Param('token') token: string, @Res() response: Response) {
-    const url = await this.downloadsService.getFileUrl(token);
-
-    return response.redirect(url);
+  @Get('downloads/:token/manifest.plist')
+  @Header('Content-Type', 'application/xml; charset=utf-8')
+  async getManifest(@Param('token') token: string) {
+    return this.downloadsService.getManifest(token);
   }
 
-  @Get('downloads/:token/manifest.plist')
-  async getManifest(@Param('token') token: string, @Res() response: Response) {
-    const manifest = await this.downloadsService.getManifest(token);
+  @Get('downloads/:token/file')
+  @Redirect()
+  async download(@Param('token') token: string) {
+    const url = await this.downloadsService.getFileUrl(token);
 
-    response.setHeader('Content-Type', 'application/xml');
-    response.setHeader(
-      'Content-Disposition',
-      'inline; filename="manifest.plist"',
-    );
-
-    return response.send(manifest);
+    return {
+      url,
+      statusCode: 302,
+    };
   }
 }

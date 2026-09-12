@@ -1,8 +1,9 @@
-import { Button, Text } from '@shared/ui'
-import { DownloadIcon } from '@assets/icons'
-import { useParams } from 'react-router-dom'
 import { Image, Spin } from 'antd'
+import { useParams } from 'react-router-dom'
+
+import { DownloadIcon } from '@assets/icons'
 import { useDownloadInfo } from '@entities/downloads/hooks/use-download-info'
+import { Button, Text } from '@shared/ui'
 
 import styles from './downloaPage.module.less'
 
@@ -12,19 +13,30 @@ export const DownloadPage = () => {
   const { data, isLoading, isError } = useDownloadInfo(token)
 
   if (isLoading) {
-    return <Spin />
+    return (
+      <div className={styles.downloadPage}>
+        <Spin />
+      </div>
+    )
   }
 
   if (isError || !data) {
-    return <Text variant="title" text="Ссылка недействительна или истекла" />
+    return (
+      <div className={styles.downloadPage}>
+        <Text variant="title" text="Ссылка недействительна или истекла" />
+      </div>
+    )
   }
 
-  const handleDownload = () => {
-    const manifestUrl = `${window.location.origin}${import.meta.env.VITE_API_URL}/downloads/${token}/manifest.plist`
+  const handleInstall = () => {
+    const manifestUrl =
+      `${window.location.origin}` +
+      `${import.meta.env.VITE_API_URL}` +
+      `/downloads/${token}/manifest.plist`
 
-    const installUrl = `itms-services://?action=download-manifest&url=${encodeURIComponent(
-      manifestUrl,
-    )}`
+    const installUrl =
+      `itms-services://?action=download-manifest&url=` +
+      encodeURIComponent(manifestUrl)
 
     window.location.href = installUrl
   }
@@ -32,17 +44,18 @@ export const DownloadPage = () => {
   return (
     <div className={styles.downloadPage}>
       <div className={styles.block}>
-        <Image src={data.app.icon} preview={false} />
+        <Image src={data.app.icon} preview={false} width={96} height={96} />
 
         <Text variant="title" text={data.app.name} />
+
         <Text variant="subtitle" text={data.app.category} />
 
         <Button
           view="primary"
-          onClick={handleDownload}
+          onClick={handleInstall}
           icon={<DownloadIcon stroke="#fff" />}
         >
-          Скачать
+          Установить
         </Button>
       </div>
     </div>

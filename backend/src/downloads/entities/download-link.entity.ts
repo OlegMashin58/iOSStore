@@ -14,18 +14,23 @@ export class DownloadLink {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
+  @Column({
+    unique: true,
+  })
   token: string;
 
-  @ManyToOne(() => App, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'app_id' })
+  @ManyToOne(() => App, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({
+    name: 'app_id',
+  })
   app: App;
 
-  @Column({ name: 'app_id' })
+  @Column({
+    name: 'app_id',
+  })
   appId: string;
-
-  @Column()
-  s3Key: string;
 
   @Column()
   expiresAt: Date;
