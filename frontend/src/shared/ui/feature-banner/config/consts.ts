@@ -1,4 +1,4 @@
-import { downloadIcon, headphoneIcon, secureIcon } from '@assets/icons'
+import { headphoneIcon, secureIcon } from '@assets/icons'
 import type { IFeatureOptions } from './types'
 
 export const FEATURE_OPTIONS: IFeatureOptions[] = [
@@ -8,7 +8,7 @@ export const FEATURE_OPTIONS: IFeatureOptions[] = [
     description: 'Все приложения проверены и безопасны для вашего iPhone.',
   },
   {
-    icon: downloadIcon,
+    icon: '',
     title: 'Моментальная доставка',
     description: 'Ссылки на скачивание отправляются сразу после оплаты.',
   },

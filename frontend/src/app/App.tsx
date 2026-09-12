@@ -5,34 +5,32 @@ import {
   GuidePage,
   ProfilePage,
   AdminAppsPage,
-  TestPage,
+  DownloadPage,
 } from '../pages'
 
 import './styles/reset.less'
 import './styles/global.less'
-import { AccountLayout, Footer, Header } from '@widgets/index'
+import { AccountLayout } from '@widgets/index'
 import { RequireAuth } from './providers/auth/RequireAuth'
+import { MainLayout } from './layouts'
 
 export const App = () => {
   return (
-    <>
-      <Header />
-      <Routes>
+    <Routes>
+      <Route element={<MainLayout />}>
         <Route path="/" element={<MainPage />} />
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/guide" element={<GuidePage />} />
+      </Route>
 
-        {/* <Route path="/profile" element={<AccountLayout />} /> */}
-        <Route path="/test-ipa" element={<TestPage />} />
-
-        <Route element={<RequireAuth />}>
-          <Route element={<AccountLayout />}>
-            <Route path="/account/profile" element={<ProfilePage />} />
-            <Route path="/account/apps" element={<AdminAppsPage />} />
-          </Route>
+      <Route element={<RequireAuth />}>
+        <Route element={<AccountLayout />}>
+          <Route path="/account/profile" element={<ProfilePage />} />
+          <Route path="/account/apps" element={<AdminAppsPage />} />
         </Route>
-      </Routes>
-      <Footer />
-    </>
+      </Route>
+
+      <Route path="/test-ipa" element={<DownloadPage />} />
+    </Routes>
   )
 }
